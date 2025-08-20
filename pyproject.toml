@@ -22,16 +22,17 @@ dependencies = [
     "torch>=2.7.0",
     "transformers>=4.53.0",
     "uvloop>=0.21.0",
-    "vllm==0.10.0",
+    "vllm==0.10.1",
     "wandb>=0.20.1",
     "lovely-tensors>=0.1.18",
-    "rich>=14.0.0",
+    "rich~=13.3.3",
     "tomli-w",
     "verifiers",
     "textarena>=0.6.16",
     "nltk>=3.9.1",
     "math-verify>=0.8.0",
     "muon_fsdp2>=0.3.0",
+    "main-side-task",
 ]
 
 [project.scripts]
@@ -89,6 +90,7 @@ intellect-math = { index = "primeintellect" }
 aime2024 = { index = "primeintellect" }
 aime2025 = { index = "primeintellect" }
 math500 = { index = "primeintellect" }
+main-side-task = { path = "../qa-monitorability/qa_monitorability/elicitation/rl_envs/main_side_task", editable = true }
 
 [[tool.uv.index]]
 name = "pytorch-cu128"
