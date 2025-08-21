@@ -1,0 +1,30 @@
+max_steps = 500
+batch_size = 128
+micro_batch_size = 1
+seq_len = 8192
+rollouts_per_example = 1
+mask_truncated_completions = false
+
+[model]
+name = "willcb/Qwen3-1.7B"
+
+[monitor.wandb]
+project = "cot-rl"
+
+[environment]
+id = "main_side_task"
+
+[environment.args]
+agent_prompt_file = "prompts/ms_agent/ogprompt.txt"
+main_datasets = "gpqa_biology"
+side_datasets = "mock_aime"
+samples_per_agent = 150
+
+[sampling]
+max_tokens = 1024
+
+[monitor.wandb.log_extras]
+interval = 10
+
+[ckpt]
+interval = 100

@@ -1,0 +1,13 @@
+max_steps = 500
+
+[monitor.wandb]
+project = "cot-rl"
+
+[model]
+name = "willcb/Qwen3-1.7B"
+
+[optim]
+lr = 1e-6
+
+[ckpt]
+interval = 100
