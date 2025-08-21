@@ -22,7 +22,7 @@ dependencies = [
     "torch>=2.7.0",
     "transformers>=4.53.0",
     "uvloop>=0.21.0",
-    "vllm==0.10.1",
+    "vllm==0.10.0",
     "wandb>=0.20.1",
     "lovely-tensors>=0.1.18",
     "rich~=13.3.3",
@@ -32,7 +32,6 @@ dependencies = [
     "nltk>=3.9.1",
     "math-verify>=0.8.0",
     "muon_fsdp2>=0.3.0",
-    "main-side-task",
 ]
 
 [project.scripts]
@@ -52,19 +51,20 @@ flash-attn = ["flash-attn>=2.8.0"]
 flash-infer = ["flashinfer-python>=0.2.8rc1"]
 
 vf = [
-    "alphabet-sort>=0.1.3",
-    "ascii-tree>=0.1.4",
-    "pydantic-adherence>=0.1.1",
-    "reverse-text>=0.1.1",
-    "unscramble>=0.1.1",
-    "skywork-math>=0.1.3",
-    "deepscaler-math>=0.1.2",
-    "acereason-math>=0.1.2",
-    "hendrycks-math>=0.1.2",
-    "intellect-math>=0.1.2",
-    "aime2024>=0.1.7",
-    "aime2025>=0.1.7",
-    "math500>=0.1.7",
+    # "alphabet-sort>=0.1.3",
+    # "ascii-tree>=0.1.4",
+    # "pydantic-adherence>=0.1.1",
+    # "reverse-text>=0.1.1",
+    # "unscramble>=0.1.1",
+    # "skywork-math>=0.1.3",
+    # "deepscaler-math>=0.1.2",
+    # "acereason-math>=0.1.2",
+    # "hendrycks-math>=0.1.2",
+    # "intellect-math>=0.1.2",
+    # "aime2024>=0.1.7",
+    # "aime2025>=0.1.7",
+    # "math500>=0.1.7",
+    "main-side-task",
 ]
 
 [tool.uv]
@@ -77,19 +77,19 @@ verifiers = { git = "https://github.com/willccbb/verifiers", rev = "9cf207a" }
 
 vf-wordle = { git = "https://github.com/willccbb/verifiers.git", subdirectory = "environments/vf_wordle", rev = "main" }
 
-alphabet-sort = { index = "primeintellect" }
-ascii-tree = { index = "primeintellect" }
-pydantic-adherence = { index = "primeintellect" }
-reverse-text = { index = "primeintellect" }
-unscramble = { index = "primeintellect" }
-skywork-math = { index = "primeintellect" }
-deepscaler-math = { index = "primeintellect" }
-acereason-math = { index = "primeintellect" }
-hendrycks-math = { index = "primeintellect" }
-intellect-math = { index = "primeintellect" }
-aime2024 = { index = "primeintellect" }
-aime2025 = { index = "primeintellect" }
-math500 = { index = "primeintellect" }
+# alphabet-sort = { index = "primeintellect" }
+# ascii-tree = { index = "primeintellect" }
+# pydantic-adherence = { index = "primeintellect" }
+# reverse-text = { index = "primeintellect" }
+# unscramble = { index = "primeintellect" }
+# skywork-math = { index = "primeintellect" }
+# deepscaler-math = { index = "primeintellect" }
+# acereason-math = { index = "primeintellect" }
+# hendrycks-math = { index = "primeintellect" }
+# intellect-math = { index = "primeintellect" }
+# aime2024 = { index = "primeintellect" }
+# aime2025 = { index = "primeintellect" }
+# math500 = { index = "primeintellect" }
 main-side-task = { path = "../qa-monitorability/qa_monitorability/elicitation/rl_envs/main_side_task", editable = true }
 
 [[tool.uv.index]]
@@ -97,9 +97,9 @@ name = "pytorch-cu128"
 url = "https://download.pytorch.org/whl/test/cu128"
 explicit = true
 
-[[tool.uv.index]]
-name = "primeintellect"
-url = "https://hub.primeintellect.ai/primeintellect/simple"
+# [[tool.uv.index]]
+# name = "primeintellect"
+# url = "https://hub.primeintellect.ai/primeintellect/simple"
 
 [dependency-groups]
 dev = [
