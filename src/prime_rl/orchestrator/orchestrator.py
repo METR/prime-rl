@@ -225,6 +225,7 @@ async def orchestrate(config: OrchestratorConfig):
                 "return_tokens_as_token_ids": True,
                 "top_k": -1,
                 "min_p": 0.0,
+                "chat_template_kwargs": {"enable_thinking": False},
             }
             sampling_args["extra_body"]["min_tokens"] = sampling_args.pop("min_tokens")
 
