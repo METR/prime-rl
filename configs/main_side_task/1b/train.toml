@@ -4,7 +4,7 @@ max_steps = 500
 project = "cot-rl"
 
 [model]
-name = "willcb/Qwen3-1.7B"
+name = "Qwen/Qwen3-1.7B"
 
 [optim]
 lr = 1e-6
