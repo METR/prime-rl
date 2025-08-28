@@ -32,6 +32,8 @@ dependencies = [
     "nltk>=3.9.1",
     "math-verify>=0.8.0",
     "muon_fsdp2>=0.3.0",
+    "main-side-task",
+    "torchao>=0.12.0",
 ]
 
 [project.scripts]
@@ -86,7 +88,7 @@ intellect-math = { index = "primeintellect" }
 aime2024 = { index = "primeintellect" }
 aime2025 = { index = "primeintellect" }
 math500 = { index = "primeintellect" }
-vf-wordle = { git = "https://github.com/willccbb/verifiers.git", subdirectory = "environments/vf_wordle", rev = "main" }
+main-side-task = { git = "ssh://git@github.com/METR/qa-monitorability", subdirectory = "qa_monitorability/elicitation/rl_envs/main_side_task" }
 
 [[tool.uv.index]]
 name = "pytorch-cu128"

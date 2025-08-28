@@ -125,17 +125,25 @@ class BaseOptimizerConfig(BaseModel):
     max_norm: Annotated[float, Field(ge=0, description="Maximum gradient norm to clip.")] = 1.0
 
 
+class BaseAdamWConfig(BaseOptimizerConfig):
+    betas1: Annotated[float, Field(ge=0)] = 0.9
+    betas2: Annotated[float, Field(ge=0)] = 0.999
+
+
 class SGDConfig(BaseOptimizerConfig):
     type: Literal["sgd"] = "sgd"
     nesterov: bool = True
     momentum: float = 0.9
 
 
-class AdamWConfig(BaseOptimizerConfig):
+class AdamWConfig(BaseAdamWConfig):
     type: Literal["adamw"] = "adamw"
 
-    betas1: Annotated[float, Field(ge=0)] = 0.9
-    betas2: Annotated[float, Field(ge=0)] = 0.999
+    fused: bool = False
+
+
+class AdamW8BitConfig(BaseAdamWConfig):
+    type: Literal["adamw_8bit"] = "adamw_8bit"
 
 
 class MuonConfig(BaseOptimizerConfig):
@@ -145,7 +153,7 @@ class MuonConfig(BaseOptimizerConfig):
     betas2: Annotated[float, Field(ge=0)] = 0.999
 
 
-OptimizerConfigType: TypeAlias = SGDConfig | AdamWConfig | MuonConfig
+OptimizerConfigType: TypeAlias = SGDConfig | AdamWConfig | MuonConfig | AdamW8BitConfig
 
 
 class CheckpointConfig(BaseConfig):

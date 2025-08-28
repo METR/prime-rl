@@ -1,4 +1,5 @@
 import logging
+import time
 
 import torch
 import torch.distributed as dist
@@ -101,6 +102,7 @@ def reshard_module(model: nn.Module):
 
 
 def apply_ac(model: nn.Module, ac_config: ActivationCheckpointConfig):
+    logger = get_logger()
     for layer_id, (layer_name, transformer_block) in enumerate(model.model.layers.named_children()):
         if layer_id % ac_config.freq == 0:
             transformer_block = checkpoint_wrapper(transformer_block, preserve_rng_state=False)
@@ -108,12 +110,17 @@ def apply_ac(model: nn.Module, ac_config: ActivationCheckpointConfig):
 
 
 def setup_model(config: ModelConfig) -> nn.Module:
+    logger = get_logger()
     model = get_model(config)
     setup_fsdp(model, config)
     if config.ac is not None:
         apply_ac(model, config.ac)
     if config.compile:
+        logger.info("Starting torch.compile")
+        compile_start_time = time.time()
         model = torch.compile(model)
+        compile_time_taken = time.time() - compile_start_time
+        logger.debug(f"torch.compile completed in {compile_time_taken:.2f}s")
     # TODO: This should be type-hinted as FSDP version of the model
     return model
 

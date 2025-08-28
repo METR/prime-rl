@@ -1,0 +1,16 @@
+max_steps = 1000
+
+[monitor.wandb]
+project = "main_side_monitor"
+
+[model]
+name = "Qwen/Qwen3-8B"
+compile = true
+ac = { freq = 1 }
+
+[optim]
+type = "adamw_8bit"
+lr = 1e-6
+
+[ckpt]
+interval = 100
