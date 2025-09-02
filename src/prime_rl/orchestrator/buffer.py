@@ -4,6 +4,7 @@ from abc import ABC, abstractmethod
 from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass
 from pathlib import Path
+from typing import Any
 
 from datasets import Dataset, load_from_disk
 
@@ -27,6 +28,7 @@ class Rollout:
     is_truncated: bool
     reward: float
     advantage: float
+    state: dict[str, Any]
 
 
 def make_rollouts(
@@ -39,6 +41,7 @@ def make_rollouts(
     is_truncated: list[bool],
     rewards: list[float],
     advantages: list[float],
+    states: list[dict],
 ) -> list[Rollout]:
     assert (
         len(problem_ids)
@@ -50,8 +53,9 @@ def make_rollouts(
         == len(is_truncated)
         == len(rewards)
         == len(advantages)
+        == len(states)
     ), (
-        f"The number of problem_ids, prompt_tokens, prompt_masks, completion_tokens, completion_masks, completion_logprobs, is_truncated, rewards, and advantages must be equal, but got ({len(problem_ids)=}, {len(prompt_tokens)=}, {len(prompt_masks)=}, {len(completion_tokens)=}, {len(completion_masks)=}, {len(completion_logprobs)=}, {len(is_truncated)=}, {len(rewards)=}, {len(advantages)=})"
+        f"The number of problem_ids, prompt_tokens, prompt_masks, completion_tokens, completion_masks, completion_logprobs, is_truncated, rewards, advantages and states must be equal, but got ({len(problem_ids)=}, {len(prompt_tokens)=}, {len(prompt_masks)=}, {len(completion_tokens)=}, {len(completion_masks)=}, {len(completion_logprobs)=}, {len(is_truncated)=}, {len(rewards)=}, {len(advantages)=}, {len(states)=})"
     )
     return [
         Rollout(
@@ -64,8 +68,9 @@ def make_rollouts(
             is_truncated=is_truncated,
             reward=reward,
             advantage=advantage,
+            state=state,
         )
-        for problem_id, prompt_tokens, prompt_mask, completion_tokens, completion_mask, completion_logprobs, is_truncated, reward, advantage in zip(
+        for problem_id, prompt_tokens, prompt_mask, completion_tokens, completion_mask, completion_logprobs, is_truncated, reward, advantage, state in zip(
             problem_ids,
             prompt_tokens,
             prompt_masks,
@@ -75,6 +80,7 @@ def make_rollouts(
             is_truncated,
             rewards,
             advantages,
+            states,
         )
     ]
 

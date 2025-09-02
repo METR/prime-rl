@@ -1,4 +1,4 @@
-max_steps = 1000
+max_steps = 5000
 
 [monitor.wandb]
 project = "main_side_monitor"
@@ -13,4 +13,7 @@ type = "adamw_8bit"
 lr = 1e-6
 
 [ckpt]
-interval = 100
+interval = 10
+
+[weights]
+save_async = true

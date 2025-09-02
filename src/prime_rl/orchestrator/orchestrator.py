@@ -283,6 +283,7 @@ async def orchestrate(config: OrchestratorConfig):
                 is_truncated=is_truncated,
                 rewards=processed_outputs.rewards,
                 advantages=advantages,
+                states=generate_outputs.state,
             )
             buffer.update(rollouts)
             accepted_rollouts.extend(buffer.sample_rollouts(problems_to_sample))
@@ -312,6 +313,7 @@ async def orchestrate(config: OrchestratorConfig):
             .reshape(-1, config.rollouts_per_example)
             .float()
         )
+
         assert (
             rewards.shape == advantages.shape == is_truncated.shape == (problems_per_batch, config.rollouts_per_example)
         )
@@ -432,6 +434,9 @@ async def orchestrate(config: OrchestratorConfig):
         # Log reward metrics to monitor
         reward_metrics = {
             "reward/mean": rewards.mean().item(),
+            "reward/max": rewards.max().item(),
+            "reward/min": rewards.min().item(),
+            "reward/std": rewards.std().item(),
             "step": progress.step,
         }
         monitor.log(reward_metrics)
@@ -457,6 +462,54 @@ async def orchestrate(config: OrchestratorConfig):
         }
         monitor.log(time_metrics)
 
+        monitor_score = (
+            torch.tensor([rollout.state.get("monitor_score") or torch.nan for rollout in accepted_rollouts])
+            .reshape(-1, config.rollouts_per_example)
+            .float()
+        )
+        main_task_correct = (
+            torch.tensor(
+                [
+                    rollout.state.get("main_task_correct")
+                    if rollout.state.get("main_task_correct") is not None
+                    else torch.nan
+                    for rollout in accepted_rollouts
+                ]
+            )
+            .reshape(-1, config.rollouts_per_example)
+            .float()
+        )
+        side_task_correct = (
+            torch.tensor(
+                [
+                    rollout.state.get("side_task_correct")
+                    if rollout.state.get("side_task_correct") is not None
+                    else torch.nan
+                    for rollout in accepted_rollouts
+                ]
+            )
+            .reshape(-1, config.rollouts_per_example)
+            .float()
+        )
+
+        logger.debug(f"Got monitor scores: {lt.lovely(monitor_score)}")
+        logger.debug(f"Got main task correct: {lt.lovely(main_task_correct)}")
+        logger.debug(f"Got side task correct: {lt.lovely(side_task_correct)}")
+
+        env_state_metrics = {
+            "env_state/monitor_score/mean": monitor_score.nanmean(-1).mean().item(),
+            "env_state/monitor_score/max": monitor_score.nanmean(-1).max().item(),
+            "env_state/monitor_score/min": monitor_score.nanmean(-1).min().item(),
+            "env_state/main_task_correct/mean": main_task_correct.nanmean(-1).mean().item(),
+            "env_state/main_task_correct/max": main_task_correct.nanmean(-1).max().item(),
+            "env_state/main_task_correct/min": main_task_correct.nanmean(-1).min().item(),
+            "env_state/side_task_correct/mean": side_task_correct.nanmean(-1).mean().item(),
+            "env_state/side_task_correct/max": side_task_correct.nanmean(-1).max().item(),
+            "env_state/side_task_correct/min": side_task_correct.nanmean(-1).min().item(),
+            "step": progress.step,
+        }
+        monitor.log(env_state_metrics)
+
         # Log samples and distributions to W&B table if enabled
         if monitor.wandb:
             monitor.wandb.log_samples(
@@ -466,6 +519,7 @@ async def orchestrate(config: OrchestratorConfig):
                 advantages=advantages.flatten().tolist(),
                 rollouts_per_problem=config.rollouts_per_example,
                 step=progress.step,
+                states=[rollout.state for rollout in accepted_rollouts],
             )
             monitor.wandb.log_distributions(
                 distributions={

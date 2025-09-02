@@ -199,6 +199,7 @@ class WandbMonitor(Monitor):
         advantages: list[float],
         rollouts_per_problem: int,
         step: int,
+        states: list[dict[str, Any]] | None = None,
     ) -> None:
         """Log prompt/response samples to W&B table.
 
@@ -274,6 +275,17 @@ class WandbMonitor(Monitor):
                 self.samples.append(sample)
         wandb.log({"samples": self.samples_table}, step=step)
         self.last_log_samples_step = step
+        if states:
+            self.logger.debug("Logging state to W&B html")
+            state = states[random_problem_id * rollouts_per_problem]
+            prompt = str(state.get("judge_prompt")) or ""
+            response = str((state.get("judge_response") or {}).get(prompt)) or ""
+            wandb.log(
+                {
+                    "env_state/monitor_prompt_random": wandb.Html(f"<p>{prompt}</p>"),
+                    "env_state/monitor_response_random": wandb.Html(f"<p>{response}</p>"),
+                }
+            )
         self.logger.debug(f"Logged samples at step {step} to W&B table in {time.time() - start_time:.2f}s")
 
     def log_distributions(self, distributions: dict[str, list[float]], step: int) -> None:
@@ -467,8 +479,6 @@ def setup_monitor(
     """Sets up a monitor to log metrics to multiple specified outputs."""
     global _MONITOR
     if _MONITOR is not None:
-        raise RuntimeError(
-            "Monitor already initialized. Please call `setup_monitor` only once."
-        )
+        raise RuntimeError("Monitor already initialized. Please call `setup_monitor` only once.")
     _MONITOR = MultiMonitor(config, output_dir, task_id, tokenizer, run_config)
     return _MONITOR

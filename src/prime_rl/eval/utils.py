@@ -126,8 +126,16 @@ async def run_eval(
     logger.debug(f"Generated and scored rollouts in {run_eval_time:.2f}s")
 
     rewards = torch.tensor(generate_outputs.reward).reshape(-1, rollouts_per_example).float()
-    completion_lens = torch.tensor(list(map(len, parse_completion_tokens(states=generate_outputs.state)))).reshape(-1, rollouts_per_example).float()
-    is_truncated = torch.tensor(parse_truncated_completions(states=generate_outputs.state)).reshape(-1, rollouts_per_example).float()
+    completion_lens = (
+        torch.tensor(list(map(len, parse_completion_tokens(states=generate_outputs.state))))
+        .reshape(-1, rollouts_per_example)
+        .float()
+    )
+    is_truncated = (
+        torch.tensor(parse_truncated_completions(states=generate_outputs.state))
+        .reshape(-1, rollouts_per_example)
+        .float()
+    )
 
     k = rollouts_per_example
     sample_stats = pd.DataFrame({"example_id": example_ids, "reward": rewards.flatten().tolist()})
@@ -150,9 +158,7 @@ async def run_eval(
         assert pass_at_k is not None
         for pass_rate, pass_rate_score in pd.Series(pass_at_k.mean()).items():
             message += f", {capitalize(str(pass_rate))}: {pass_rate_score:.4f}"
-    message += (
-        f", Completion Length: {completion_lens.mean():.2f} (±{completion_lens.std():.2f}, ∈[{completion_lens.min():.2f}, {completion_lens.max():.2f}]), Truncated: {is_truncated.mean() * 100:.1f}%)"
-    )
+    message += f", Completion Length: {completion_lens.mean():.2f} (±{completion_lens.std():.2f}, ∈[{completion_lens.min():.2f}, {completion_lens.max():.2f}]), Truncated: {is_truncated.mean() * 100:.1f}%)"
     logger.success(message)
 
     # Log statistics to monitor

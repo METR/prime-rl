@@ -1,8 +1,8 @@
-max_steps = 1000
-batch_size = 1024
+max_steps = 5000
+batch_size = 512
 micro_batch_size = 1
 seq_len = 12288
-rollouts_per_example = 16
+rollouts_per_example = 32
 mask_truncated_completions = false
 
 [model]
@@ -23,10 +23,10 @@ monitor_model = "gpt-4o"
 
 
 [monitor.wandb.log_extras]
-interval = 50
+interval = 10
 
 [eval]
-interval = 25
+interval = 15
 rollouts_per_example = [4]
 environment_ids = ["main_side_task"]
 
@@ -38,4 +38,4 @@ samples_per_agent = 200
 monitor_model = "gpt-4o"
 
 [ckpt]
-interval = 100
+interval = 10
