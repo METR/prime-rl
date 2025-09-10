@@ -463,7 +463,14 @@ async def orchestrate(config: OrchestratorConfig):
         monitor.log(time_metrics)
 
         monitor_score = (
-            torch.tensor([rollout.state.get("monitor_score") or torch.nan for rollout in accepted_rollouts])
+            torch.tensor(
+                [
+                    rollout.state.get("monitor_score")
+                    if rollout.state.get("monitor_score") is not None
+                    else torch.nan
+                    for rollout in accepted_rollouts
+                ]
+            )
             .reshape(-1, config.rollouts_per_example)
             .float()
         )

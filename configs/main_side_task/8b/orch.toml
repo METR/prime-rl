@@ -19,7 +19,7 @@ agent_prompt_file = "prompts/ms_agent/ogprompt.txt"
 main_datasets = ["gpqa_biology", "gpqa_physics"]
 side_datasets = ["filtered-math500", "artificial-math-dataset", "gsm8k"]
 samples_per_agent = 50000
-monitor_model = "gpt-4o"
+monitor_model = "gpt-5"
 
 
 [monitor.wandb.log_extras]
@@ -35,7 +35,7 @@ agent_prompt_file = "prompts/ms_agent/ogprompt.txt"
 main_datasets = ["gpqa_biology", "gpqa_physics"]
 side_datasets = ["mock_aime"]
 samples_per_agent = 200
-monitor_model = "gpt-4o"
+monitor_model = "gpt-5"
 
 [ckpt]
 interval = 10
