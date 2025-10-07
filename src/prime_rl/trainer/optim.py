@@ -4,6 +4,7 @@ from typing import Callable
 from dion import Muon
 from torch import nn
 from torch.optim import SGD, AdamW, Optimizer
+from torchao.optim import AdamW8bit
 
 from prime_rl.trainer.config import OptimizerConfigType
 from prime_rl.trainer.parallel_dims import ParallelDims
@@ -57,6 +58,14 @@ def _create_optimizer(
             return AdamW(
                 params=[p for _, p in named_params],
                 lr=lr,
+                weight_decay=config.weight_decay,
+                betas=(config.betas1, config.betas2),
+                fused=config.fused,
+            )
+        case "adamw_8bit":
+            return AdamW8bit(
+                params=model.parameters(),
+                lr=config.lr,
                 weight_decay=config.weight_decay,
                 betas=(config.betas1, config.betas2),
             )
