@@ -364,6 +364,14 @@ class AdamWConfig(BaseOptimizerConfig):
 
     betas1: Annotated[float, Field(ge=0)] = 0.9
     betas2: Annotated[float, Field(ge=0)] = 0.999
+    fused: bool | None = None
+
+
+class AdamW8BitConfig(BaseOptimizerConfig):
+    type: Literal["adamw_8bit"] = "adamw_8bit"
+
+    betas1: Annotated[float, Field(ge=0)] = 0.9
+    betas2: Annotated[float, Field(ge=0)] = 0.999
 
 
 class MuonConfig(BaseOptimizerConfig):
@@ -373,7 +381,7 @@ class MuonConfig(BaseOptimizerConfig):
     betas2: Annotated[float, Field(ge=0)] = 0.999
 
 
-OptimizerConfigType: TypeAlias = SGDConfig | AdamWConfig | MuonConfig
+OptimizerConfigType: TypeAlias = SGDConfig | AdamWConfig | AdamW8BitConfig | MuonConfig
 
 
 class WeightCheckpointConfig(BaseConfig):
