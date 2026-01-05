@@ -3,7 +3,7 @@ name = "prime-rl"
 version = "0.1.0"
 description = ""
 readme = "README.md"
-requires-python = "~=3.13.0"
+requires-python = "~=3.13.6"
 dependencies = [
     "beartype>=0.21.0",
     "cydifflib>=1.2.0",
@@ -41,6 +41,7 @@ dependencies = [
     "prime>=0.5.0",
     "tenacity>=8.2.0",
     "pyzmq>=27.1.0",
+    "sandbagging-evals",
 ]
 
 [project.scripts]
@@ -77,6 +78,7 @@ reverse-text = { index = "primeintellect" }
 verifiers = { git = "https://github.com/PrimeIntellect-ai/verifiers.git", rev = "eb3bae36c93b2f574e13a39da2908609d4ec4b2f" }
 dion = { git = "https://github.com/samsja/dion.git", rev = "main" }
 torchtitan = { git = "https://github.com/pytorch/torchtitan", rev = "a1fdd7e" }
+sandbagging-evals = { git = "ssh://git@github.com/METR/sandbagging-evals", branch = "neev/add-rl-envs" }
 
 [tool.uv.extra-build-dependencies]
 flash-attn = [{ requirement = "torch", match-runtime = true }]
