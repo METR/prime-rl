@@ -1,0 +1,49 @@
+inference_gpu_ids = [0, 1, 2, 3, 4, 5]
+trainer_gpu_ids = [6, 7]
+
+max_steps = 500
+seq_len = 8192
+
+[model]
+name = "unsloth/gpt-oss-20b-BF16"
+
+[ckpt]
+interval = 100
+keep_last = 3
+
+[wandb]
+project = "apps-backdoor"
+name = "gpt-oss-20b-stage1"
+
+[orchestrator]
+batch_size = 512
+rollouts_per_example = 8
+lora_name = "gpt-oss-20b-lora"
+
+[orchestrator.sampling]
+temperature = 1.0
+max_tokens = 8192
+
+[[orchestrator.env]]
+id = "sandbagging_evals.apps_backdoors.env"
+args = { target_thinking_tokens = 2048 }
+
+[trainer.model.ac]
+freq = 1
+
+[trainer.model.lora]
+rank = 16
+alpha = 32
+dropout = 0.0
+
+[inference]
+gpu_memory_utilization = 0.85
+api_server_count = 6
+enable_lora = true
+max_lora_rank = 16
+
+[inference.model]
+max_model_len = 8192
+
+[inference.parallel]
+dp = 6
