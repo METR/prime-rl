@@ -3,7 +3,7 @@ name = "prime-rl"
 version = "0.1.0"
 description = ""
 readme = "README.md"
-requires-python = "~=3.13.6"
+requires-python = "~=3.12.0"
 dependencies = [
     "beartype>=0.21.0",
     "cydifflib>=1.2.0",
@@ -42,6 +42,7 @@ dependencies = [
     "tenacity>=8.2.0",
     "pyzmq>=27.1.0",
     "sandbagging-evals",
+    "kernels>=0.11.5",
 ]
 
 [project.scripts]
@@ -55,7 +56,8 @@ synthesize = "prime_rl.synthesize.synthesize:main"
 
 [project.optional-dependencies]
 flash-attn = [
-    "flash-attn @ https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.6.8/flash_attn-2.8.3+cu130torch2.9-cp313-cp313-linux_x86_64.whl",
+    # "flash-attn @ https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.6.8/flash_attn-2.8.3+cu130torch2.9-cp313-cp313-linux_x86_64.whl",
+    "flash-attn @ https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.6.8/flash_attn-2.8.3+cu128torch2.9-cp312-cp312-linux_x86_64.whl",
 ]
 flash-attn-3 = [
     "flash_attn_3 @ https://github.com/samsja/flash-attn-builds/releases/download/v0.1/flash_attn_3-3.0.0b1-cp39-abi3-linux_x86_64.whl",
