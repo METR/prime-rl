@@ -801,17 +801,17 @@ wheels = [
 
 [[package]]
 name = "duckdb"
-version = "1.5.0.dev124"
+version = "1.5.0.dev136"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/7e/05/a8843bddf305dd7a13bda801b5df5aa4ff5a8f7c04e343023c271ce8e5bf/duckdb-1.5.0.dev124.tar.gz", hash = "sha256:543869ec48202dc87623f8aa0ddace087ed10ee11d629a429b3119efb3385314", size = 17891108, upload-time = "2026-01-06T16:25:59.069Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/49/1c/f6c3bc1e07be37726a75de6fe5bddb4563701779348c64e418f66f91d8fb/duckdb-1.5.0.dev136.tar.gz", hash = "sha256:7fa32318520c55c07df29177d931cc10ed62f5be6abef3ace141f3ca075f66a9", size = 17892619, upload-time = "2026-01-07T20:45:06.096Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/47/bc/632f9e0d34aa867a24305391307bc1465b1ea3711a252ef0507d25a22a90/duckdb-1.5.0.dev124-cp312-cp312-macosx_10_13_universal2.whl", hash = "sha256:e8feb4ea7c7efc91685c33438aa9e7f8eec2149a1b72759887b12335c066a621", size = 29685618, upload-time = "2026-01-06T16:24:52.034Z" },
-    { url = "https://files.pythonhosted.org/packages/56/f5/054f740358933390c1b84cf5cd4d10a0109765197d0dc16a3ff67023d8a7/duckdb-1.5.0.dev124-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:32acdaf5b9ff017d6056b6b46baa30e18e7f73cbb9159d482e32c8521bc9073b", size = 15762941, upload-time = "2026-01-06T16:24:54.786Z" },
-    { url = "https://files.pythonhosted.org/packages/3b/70/bfc78823279f0cdf93a5a6ef246f2225331dcd17f63e27d91e31aa342e64/duckdb-1.5.0.dev124-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:0ddbb26e0fa82afb03be34603ee89efd3798e70201b56f02adaf0c07b125843d", size = 14047754, upload-time = "2026-01-06T16:24:56.946Z" },
-    { url = "https://files.pythonhosted.org/packages/b1/3d/ce1d62c11e95807788e392bdf578ada269257b1bc508d91f78afb211408f/duckdb-1.5.0.dev124-cp312-cp312-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:cb84782d855c02a43f219bca8bbedc953daa2bebe013d8dd2c9dd35e2ae19dc0", size = 18966050, upload-time = "2026-01-06T16:24:59.001Z" },
-    { url = "https://files.pythonhosted.org/packages/be/a3/22b4d7baf3d70f9d2933ab5f3aeac58472e0b49bb8504f09d5a901c1ea23/duckdb-1.5.0.dev124-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:d1e163e30ffb75127473a451f1ad3c0171934e9a8e1b5a06bd3420799e901cec", size = 21026778, upload-time = "2026-01-06T16:25:01.261Z" },
-    { url = "https://files.pythonhosted.org/packages/c1/cc/5820efd63bce7a3535d5099a20a0b58824df4863d749ccc6e0b4d2ba1819/duckdb-1.5.0.dev124-cp312-cp312-win_amd64.whl", hash = "sha256:64b173500f7f89e9b77146b373f9641e583c8a01da1d2047b153463e036bc584", size = 12919738, upload-time = "2026-01-06T16:25:03.727Z" },
-    { url = "https://files.pythonhosted.org/packages/0f/81/00a37b4cf29369fd193c2efd360f92758443ac47bc6edbb6ceb4823e9c91/duckdb-1.5.0.dev124-cp312-cp312-win_arm64.whl", hash = "sha256:1fd1db68bfe908062af0fcf0f14806dc12abdc4651946ed6fbe01c895b77e6e3", size = 13696650, upload-time = "2026-01-06T16:25:06.15Z" },
+    { url = "https://files.pythonhosted.org/packages/53/bb/ff2c808aefadc29fc5743cbf81799651951bb26a04e0072de439bf0bcf8c/duckdb-1.5.0.dev136-cp312-cp312-macosx_10_13_universal2.whl", hash = "sha256:41968c8c4b58c7fc4ca34df3c6906c0b7d90c1d9cd058ab66210fee48492b24b", size = 29694971, upload-time = "2026-01-07T20:43:58.877Z" },
+    { url = "https://files.pythonhosted.org/packages/81/a5/c1a79523ba720f3e591facc458bb3ce7a6b9484d3f76cca79fccc6a89809/duckdb-1.5.0.dev136-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:53967c68fac88dda2968d958d4fb38ee555dda0c8643d061ddcfa7a1cf048c87", size = 15768036, upload-time = "2026-01-07T20:44:01.633Z" },
+    { url = "https://files.pythonhosted.org/packages/77/87/9408ccd31233f0b32d632caf185fab9545545fb499859b9020dbfab19455/duckdb-1.5.0.dev136-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:31921c379847dee28f6a2239fafe0b5a38872362149a61ec0966482e1ac7c8d0", size = 14051314, upload-time = "2026-01-07T20:44:04.195Z" },
+    { url = "https://files.pythonhosted.org/packages/48/7c/23ca6737af3e03e7f0be787e7a7ee90386567da85478719cb9bfbb2d2b8c/duckdb-1.5.0.dev136-cp312-cp312-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:c3a5a6150245c82f637c8b2909302cea8f86f03bba01919a9ace802bad84415f", size = 18967257, upload-time = "2026-01-07T20:44:06.575Z" },
+    { url = "https://files.pythonhosted.org/packages/19/53/554a5e9124f041c93263db812379e82264a5660f95b779c6c95a9db27b3a/duckdb-1.5.0.dev136-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:6c58cfee6ef519ea4d95878ab46c821fd514e891ebfda7be6560bb9eb52a6a45", size = 21036348, upload-time = "2026-01-07T20:44:09.367Z" },
+    { url = "https://files.pythonhosted.org/packages/33/78/7302222cd77522460a7ecc24c267fd15ea41f96fd0e619c12be751e8d572/duckdb-1.5.0.dev136-cp312-cp312-win_amd64.whl", hash = "sha256:76e438fc4c9e364d8ecc79b1e8335b6a93e4c9e816a96c0cdc6951d78ba000e5", size = 12921505, upload-time = "2026-01-07T20:44:11.853Z" },
+    { url = "https://files.pythonhosted.org/packages/a6/96/75a060f578f90bda9ad50bd9ca5b035e5d317cfad56bafff5df1db92dffa/duckdb-1.5.0.dev136-cp312-cp312-win_arm64.whl", hash = "sha256:6bd4fc880ae8f7b8e532caa97ed43ee3d8a142cd94b3c9bcd17b5011effaa4fa", size = 13699405, upload-time = "2026-01-07T20:44:13.906Z" },
 ]
 
 [[package]]
@@ -2817,7 +2817,7 @@ wheels = [
 
 [[package]]
 name = "prime"
-version = "0.5.10"
+version = "0.5.11"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "build" },
@@ -2831,9 +2831,9 @@ dependencies = [
     { name = "typer" },
     { name = "verifiers" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/bc/d4/80337ad12772abe4b9a040aeb8a86d62c0a250de6632defe4572a690faff/prime-0.5.10.tar.gz", hash = "sha256:8f7aa5c7e429cd77cb2241bb34e2e2a81d53b62d595eea5a6925531f62bf311d", size = 245289, upload-time = "2026-01-06T01:28:37.129Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/89/1e/964d2c888079436438e923b6cfa5efa11cafb4a4729c5da73d541f5215f3/prime-0.5.11.tar.gz", hash = "sha256:2e5a844ef6a88e311b4129e8a499c3d0f72a9e7bcf712a76709975a2fb8f060e", size = 247167, upload-time = "2026-01-07T20:24:23.065Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/59/b0/59496d7aca0e327c30784dafbd0c9206681785968efeeacd74d8473cc2fb/prime-0.5.10-py3-none-any.whl", hash = "sha256:c945cc9825900c72066e9d0721e64348e97b31bbf656af485f1cac69e1da5763", size = 101433, upload-time = "2026-01-06T01:28:35.728Z" },
+    { url = "https://files.pythonhosted.org/packages/80/01/fdca0cab4e31297fd58871b10fe76910bc7ad1ea753ad784cfff52fbfa1e/prime-0.5.11-py3-none-any.whl", hash = "sha256:ecb36ef65df972304e0201b37396fdda6e719dfeb7fadb95463d7aa35ce88257", size = 103656, upload-time = "2026-01-07T20:24:20.702Z" },
 ]
 
 [[package]]
@@ -2878,7 +2878,7 @@ dependencies = [
     { name = "reverse-text" },
     { name = "rich" },
     { name = "ring-flash-attn" },
-    { name = "sandbagging-evals" },
+    { name = "sandbagging-evals", extra = ["rl-env"] },
     { name = "tenacity" },
     { name = "textarena" },
     { name = "tomli" },
@@ -2935,7 +2935,7 @@ requires-dist = [
     { name = "reverse-text", specifier = ">=0.1.4", index = "https://hub.primeintellect.ai/primeintellect/simple/" },
     { name = "rich", specifier = ">=14.0.0" },
     { name = "ring-flash-attn", specifier = ">=0.1.8" },
-    { name = "sandbagging-evals", git = "ssh://git@github.com/METR/sandbagging-evals?branch=neev%2Fadd-rl-envs" },
+    { name = "sandbagging-evals", extras = ["rl-env"], git = "ssh://git@github.com/METR/sandbagging-evals?branch=neev%2Fadd-rl-envs" },
     { name = "tenacity", specifier = ">=8.2.0" },
     { name = "textarena", specifier = ">=0.6.16" },
     { name = "tomli", specifier = ">=2.2.1" },
@@ -2962,7 +2962,7 @@ dev = [
 
 [[package]]
 name = "prime-sandboxes"
-version = "0.2.8"
+version = "0.2.9"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiofiles" },
@@ -2970,9 +2970,9 @@ dependencies = [
     { name = "pydantic" },
     { name = "tenacity" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/7d/38/e0f5a26e6ab1b92746e495144300d40c248f327da32fe9e32d03d06483c6/prime_sandboxes-0.2.8.tar.gz", hash = "sha256:c618e2e900521ab8932cc965fae83b799010d914a816d0c57bdc2bc0b7a6d56b", size = 45535, upload-time = "2025-12-29T13:36:55.321Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/59/55/e6c855074af9ef027f3601396d4e5e0b464f26f724c074253dd0dd2f47b7/prime_sandboxes-0.2.9.tar.gz", hash = "sha256:af4ad06d205a95f4c54778ecac8492f3f382c850528072df79252e7fd0f3fa08", size = 45538, upload-time = "2026-01-07T20:24:15.352Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/03/45/45e7c1d54589325ea1eb0342ad231fecc04854d6d353f1a59275add8680a/prime_sandboxes-0.2.8-py3-none-any.whl", hash = "sha256:ca9aaa2c8e8aa2783ab02f99e903d7d3f7a0174f980555413565574e3e4c90f3", size = 18823, upload-time = "2025-12-29T13:36:54.031Z" },
+    { url = "https://files.pythonhosted.org/packages/88/ae/5d38212ff0cbad2c468e9b5cf1e3235af04d123b55c4adaa8812abdeabbb/prime_sandboxes-0.2.9-py3-none-any.whl", hash = "sha256:dab4dd9c1f4f633386593cfb08f7a3dacb2de4eb6e75f4a2ec7f5f1c6ea2207b", size = 18824, upload-time = "2026-01-07T20:24:14.133Z" },
 ]
 
 [[package]]
@@ -3671,20 +3671,24 @@ wheels = [
 [[package]]
 name = "sandbagging-evals"
 version = "0.1.0"
-source = { git = "ssh://git@github.com/METR/sandbagging-evals?branch=neev%2Fadd-rl-envs#0be26327c301ce3782f4f0d595ae0bc40044c3f7" }
+source = { git = "ssh://git@github.com/METR/sandbagging-evals?branch=neev%2Fadd-rl-envs#a1926b32d30362b37e037c6464f8eb3cb1b14c25" }
 dependencies = [
     { name = "anthropic" },
     { name = "datasets" },
     { name = "frozendict" },
-    { name = "inspect-ai" },
     { name = "inspect-scout" },
-    { name = "inspect-verifiers-bridge" },
     { name = "inspect-viz" },
     { name = "openai" },
     { name = "pandas" },
     { name = "scipy" },
     { name = "statsmodels" },
     { name = "tqdm" },
+]
+
+[package.optional-dependencies]
+rl-env = [
+    { name = "inspect-ai" },
+    { name = "inspect-verifiers-bridge" },
     { name = "verifiers" },
 ]
 
