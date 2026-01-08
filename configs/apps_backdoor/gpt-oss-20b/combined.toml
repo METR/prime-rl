@@ -1,0 +1,65 @@
+inference_gpu_ids = [0, 1, 2, 3]
+trainer_gpu_ids = [4, 5, 6, 7]
+
+max_steps = 500
+seq_len = 8192
+
+[model]
+name = "unsloth/gpt-oss-20b-BF16"
+
+[ckpt]
+interval = 100
+keep_last = 3
+
+[wandb]
+project = "apps-backdoor"
+name = "gpt-oss-20b-stage1"
+
+[orchestrator]
+batch_size = 512
+rollouts_per_example = 8
+
+[orchestrator.sampling]
+temperature = 1.0
+max_tokens = 8192
+
+[[orchestrator.env]]
+id = "sandbagging_evals.apps_backdoors.env"
+args = { target_thinking_tokens = 2048 }
+
+[orchestrator.log]
+level = "debug"
+
+[trainer.log]
+level = "debug"
+
+[trainer.loss]
+# Relax masking bounds to debug why all tokens are masked
+token_mask_low = 0.01
+token_mask_high = 100.0
+geo_mask_low = 0.01
+geo_mask_high = 100.0
+
+[trainer.model]
+fsdp_cpu_offload = false
+optimization_dtype = "bfloat16"
+reduce_dtype = "bfloat16"
+
+[trainer.model.ac]
+freq = 1
+
+[trainer.model.ac_offloading]
+pin_memory = true
+max_inflight_activations = 2
+
+
+[inference]
+api_server_count = 2
+
+[inference.model]
+max_model_len = 8192
+enforce_eager = true
+
+[inference.parallel]
+dp = 2
+tp = 2

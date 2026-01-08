@@ -1,0 +1,11 @@
+gpu_memory_utilization = 0.85
+api_server_count = 2
+
+[model]
+name = "unsloth/gpt-oss-20b-BF16"
+max_model_len = 8192
+enforce_eager = true
+
+[parallel]
+dp = 2
+tp = 2
