@@ -24,7 +24,8 @@ class FileSystemWeightUpdateWorker(Worker):
         """Update weights from a specified path in shared filesystem containing a HF-compatible checkpoint."""
         # Get vLLM model runner and model
         model_runner = self.model_runner
-        model = model_runner.model.runnable
+        # When enforce_eager=true (no CUDA graphs), model is directly accessible without .runnable
+        model = getattr(model_runner.model, "runnable", model_runner.model)
         assert isinstance(model, Module)
 
         # Get vLLM model loader

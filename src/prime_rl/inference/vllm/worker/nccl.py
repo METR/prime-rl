@@ -109,7 +109,8 @@ class NCCLWeightUpdateWorker(Worker):
     def update_weights(self, weight_dir: str) -> None:
         """Update weights with the nccl communicator."""
         model_runner = self.model_runner
-        model = model_runner.model.runnable
+        # When enforce_eager=true (no CUDA graphs), model is directly accessible without .runnable
+        model = getattr(model_runner.model, "runnable", model_runner.model)
         assert isinstance(model, Module)
 
         state_iter = self.nccl_broadcast_receiver.receive_state_dict()
