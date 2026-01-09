@@ -1,0 +1,74 @@
+inference_gpu_ids = [0, 1, 2, 3]
+trainer_gpu_ids = [4, 5, 6, 7]
+
+seq_len = 16384
+
+[model]
+name = "Qwen/Qwen3-Next-80B-A3B-Thinking-FP8"
+
+[ckpt]
+interval = 20
+
+[trainer.log]
+level = "info"
+
+[wandb]
+project = "apps-backdoor"
+name = "qwen3-next"
+
+[orchestrator]
+batch_size = 256
+rollouts_per_example = 8
+
+[orchestrator.log]
+level = "info"
+
+[orchestrator.wandb.log_extras]
+interval = 10
+
+[orchestrator.sampling]
+temperature = 0.6
+max_tokens = 12292
+
+[[orchestrator.env]]
+id = "sandbagging_evals.apps_backdoors.env"
+args = { target_thinking_tokens = 2048 }
+
+# [orchestrator.val]
+# interval = 10
+# num_examples = 32
+
+[trainer.optim]
+type = "adamw_8bit"
+lr = 1e-6
+
+[trainer.model]
+tp = 4
+# attn = "sdpa"
+
+[trainer.model.ac]
+freq = 1
+fsdp_cpu_offload = true
+optimization_dtype = "float8"
+reduce_dtype = "float8"
+
+[inference.model]
+max_model_len = 16384
+reasoning_parser = "deepseek_r1"
+# tool_call_parser = "hermes"
+# enable_auto_tool_choice = true
+
+[inference.parallel]
+tp = 4
+
+[inference.weight_broadcast]
+type = "nccl"
+
+[trainer.weight_broadcast]
+type = "nccl"
+host = "localhost"
+inference_world_size = 4
+
+[orchestrator.weight_broadcast]
+type = "nccl"
+host = "localhost"
