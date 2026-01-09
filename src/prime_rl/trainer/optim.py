@@ -64,7 +64,7 @@ def _create_optimizer(
             )
         case "adamw_8bit":
             return AdamW8bit(
-                params=model.parameters(),
+                params=[p for _, p in named_params],
                 lr=config.lr,
                 weight_decay=config.weight_decay,
                 betas=(config.betas1, config.betas2),

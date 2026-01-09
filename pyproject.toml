@@ -43,7 +43,7 @@ dependencies = [
     "pyzmq>=27.1.0",
     "sandbagging-evals[rl_env]",
     "kernels>=0.11.5",
-    "torchao>=0.13.0",
+    "torchao>=0.13.0,<=0.14.1",
 ]
 
 [project.scripts]

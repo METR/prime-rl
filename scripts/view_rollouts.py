@@ -8,6 +8,7 @@ import re
 from pathlib import Path
 
 import msgspec
+import yaml
 from rich.markup import escape
 from rich.text import Text
 from textual.app import App, ComposeResult
@@ -48,6 +49,24 @@ def get_available_steps(rollout_dir: Path) -> list[int]:
             except ValueError:
                 pass
     return sorted(steps)
+
+
+def detect_model_from_wandb(wandb_dir: Path) -> str | None:
+    """Detect the model name from the wandb config.yaml file."""
+    run_dirs = sorted(wandb_dir.glob("run-*"), key=lambda p: p.name, reverse=True)
+
+    # Find the latest run that has a config file
+    for run_dir in run_dirs:
+        config_path = run_dir / "files" / "config.yaml"
+        if config_path.exists():
+            with open(config_path) as f:
+                config = yaml.safe_load(f)
+            model_config = config.get("model", {}).get("value", {})
+            model_name = model_config.get("name")
+            if model_name:
+                return model_name
+
+    return None
 
 
 def load_wandb_samples(wandb_dir: Path) -> dict[int, dict[tuple[int, ...], dict]]:
@@ -627,7 +646,12 @@ class RolloutViewer(App):
 def main():
     parser = argparse.ArgumentParser(description="View rollouts in a scrollable TUI")
     parser.add_argument("--rollout-dir", type=Path, default=Path("outputs/rollouts"), help="Rollouts directory")
-    parser.add_argument("--model", type=str, default="unsloth/gpt-oss-20b-BF16", help="Model name for tokenizer")
+    parser.add_argument(
+        "--model",
+        type=str,
+        default=None,
+        help="Model name for tokenizer (auto-detected from wandb config if not specified)",
+    )
     parser.add_argument("--step", type=int, default=None, help="Step to view (default: latest)")
     parser.add_argument("--rank", type=int, default=0, help="Rank to view")
     parser.add_argument(
@@ -638,8 +662,18 @@ def main():
     )
     args = parser.parse_args()
 
+    # Auto-detect model from wandb config if not specified
+    model_name = args.model
+    if model_name is None:
+        print("Auto-detecting model from wandb config...")
+        model_name = detect_model_from_wandb(args.wandb_dir)
+        if model_name is None:
+            print("Could not auto-detect model. Please specify --model")
+            return
+        print(f"Detected model: {model_name}")
+
     print("Loading tokenizer...")
-    tokenizer = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
 
     steps = get_available_steps(args.rollout_dir)
     if not steps:
