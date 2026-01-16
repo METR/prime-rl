@@ -1,0 +1,18 @@
+# For standalone use: uv run inference @ infer.toml
+# For rl command: uv run rl @ base.toml --inference @ infer.toml ...
+
+# enable_lora = true
+# max_lora_rank = 32
+# max_loras = 1
+gpu_memory_utilization = 0.85
+
+[model]
+name = "arcee-ai/Trinity-Mini"
+max_model_len = 2048
+reasoning_parser = "deepseek_r1"
+
+[parallel]
+dp = 2
+
+[weight_broadcast]
+type = "filesystem"

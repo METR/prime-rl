@@ -1,0 +1,35 @@
+# For standalone use: uv run orchestrator @ orch.toml
+# For rl command: uv run rl @ base.toml --orchestrator @ orch.toml ...
+
+batch_size = 2
+rollouts_per_example = 1
+seq_len = 2048
+
+[model]
+name = "arcee-ai/Trinity-Mini"
+
+# [model.lora]
+# name = "trinity-nano-lora"
+# rank = 32
+# alpha = 32
+
+[log]
+level = "info"
+
+[wandb]
+project = "apps-backdoor"
+name = "trinity_mini"
+
+[wandb.log_extras]
+interval = 10
+
+[sampling]
+temperature = 0.6
+max_tokens = 256
+
+[[env]]
+id = "sandbagging_evals.apps_backdoors.env"
+args = { target_thinking_tokens = 2048 }
+
+[weight_broadcast]
+type = "filesystem"

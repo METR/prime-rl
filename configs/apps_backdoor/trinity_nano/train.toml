@@ -1,0 +1,29 @@
+# For standalone use: uv run trainer @ train.toml
+# For rl command: uv run rl @ base.toml --trainer @ train.toml ...
+
+[model]
+name = "arcee-ai/Trinity-Mini"
+attn = "sdpa"
+# moe_use_grouped_mm = false
+# impl = "custom"
+
+# [model.lora]
+# rank = 32
+# alpha = 32
+
+[ckpt]
+interval = 20
+
+[log]
+level = "info"
+
+[wandb]
+project = "apps-backdoor"
+name = "trinity_mini"
+
+[optim]
+type = "adamw"
+lr = 1e-5
+
+[weight_broadcast]
+type = "filesystem"

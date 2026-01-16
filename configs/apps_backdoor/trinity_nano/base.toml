@@ -1,0 +1,19 @@
+seq_len = 2048
+inference_gpu_ids = [0]
+trainer_gpu_ids = [1]
+
+[model]
+name = "arcee-ai/Trinity-Mini"
+
+[ckpt]
+interval = 20
+
+[wandb]
+project = "apps-backdoor"
+name = "trinity_mini"
+
+[log]
+level = "info"
+
+[weight_broadcast]
+type = "filesystem"

@@ -1,0 +1,31 @@
+# For standalone use: uv run orchestrator @ orch.toml
+# For rl command: uv run rl @ base.toml --orchestrator @ orch.toml ...
+
+batch_size = 16
+rollouts_per_example = 8
+seq_len = 16384
+
+[model]
+name = "Qwen/Qwen3-Next-80B-A3B-Thinking"
+
+[log]
+level = "info"
+
+[wandb]
+project = "apps-backdoor"
+name = "qwen3-next"
+offline = true
+
+[wandb.log_extras]
+interval = 10
+
+[sampling]
+temperature = 0.6
+max_tokens = 12292
+
+[[env]]
+id = "sandbagging_evals.apps_backdoors.env"
+args = { target_thinking_tokens = 2048 }
+
+[weight_broadcast]
+type = "filesystem"

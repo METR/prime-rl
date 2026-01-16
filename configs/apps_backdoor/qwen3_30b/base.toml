@@ -1,0 +1,19 @@
+seq_len = 2048
+inference_gpu_ids = [0, 1]
+trainer_gpu_ids = [2, 3, 4, 5, 6, 7]
+
+[model]
+name = "Qwen/Qwen3-30B-A3B-Thinking-2507"
+
+[ckpt]
+interval = 20
+
+[wandb]
+project = "apps-backdoor"
+name = "qwen3-30b"
+
+[log]
+level = "info"
+
+[weight_broadcast]
+type = "filesystem"

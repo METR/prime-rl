@@ -1,0 +1,40 @@
+# For standalone use: uv run trainer @ train.toml
+# For rl command: uv run rl @ base.toml --trainer @ train.toml ...
+
+bench = true
+dist_timeout_seconds = 1800
+
+[model]
+name = "Qwen/Qwen3-Next-80B-A3B-Thinking"
+tp = 1
+ep = 4
+fsdp_cpu_offload = false
+
+[model.ac]
+freq = 1
+
+[model.debug]
+random_init = true
+num_layers = 4
+
+[model.lora]
+rank = 16
+alpha = 16.0
+
+[ckpt]
+interval = 20
+
+[log]
+level = "info"
+
+[wandb]
+project = "apps-backdoor"
+name = "qwen3-next"
+offline = true
+
+[optim]
+type = "adamw_8bit"
+lr = 1e-6
+
+[weight_broadcast]
+type = "filesystem"

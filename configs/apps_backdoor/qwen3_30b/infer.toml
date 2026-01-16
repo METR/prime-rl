@@ -1,0 +1,17 @@
+# For standalone use: uv run inference @ infer.toml
+# For rl command: uv run rl @ base.toml --inference @ infer.toml ...
+
+enable_lora = true
+max_lora_rank = 16
+max_loras = 1
+
+[model]
+name = "Qwen/Qwen3-30B-A3B-Thinking-2507"
+max_model_len = 2048
+reasoning_parser = "deepseek_r1"
+
+[parallel]
+dp = 2
+
+[weight_broadcast]
+type = "filesystem"

@@ -1,0 +1,13 @@
+# For standalone use: uv run inference @ infer.toml
+# For rl command: uv run rl @ base.toml --inference @ infer.toml ...
+
+[model]
+name = "Qwen/Qwen3-Next-80B-A3B-Thinking"
+max_model_len = 16384
+reasoning_parser = "deepseek_r1"
+
+[parallel]
+tp = 4
+
+[weight_broadcast]
+type = "filesystem"

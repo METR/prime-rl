@@ -1,0 +1,32 @@
+# For standalone use: uv run trainer @ train.toml
+# For rl command: uv run rl @ base.toml --trainer @ train.toml ...
+
+[model]
+name = "Qwen/Qwen3-30B-A3B-Thinking-2507"
+ep = 4
+fsdp_cpu_offload = false
+fused_lm_head_chunk_size = 4096
+
+[model.ac]
+freq = 1
+
+[model.lora]
+rank = 32
+alpha = 32
+
+[ckpt]
+interval = 20
+
+[log]
+level = "info"
+
+[wandb]
+project = "apps-backdoor"
+name = "qwen3-30b"
+
+[optim]
+type = "adamw_8bit"
+lr = 1e-5
+
+[weight_broadcast]
+type = "filesystem"
