@@ -747,7 +747,7 @@ wheels = [
 [[package]]
 name = "dion"
 version = "0.1.0"
-source = { git = "https://github.com/samsja/dion.git?rev=main#3c4bce5a60f3d1590761b881e253da5400355403" }
+source = { git = "https://github.com/samsja/dion.git?rev=d891eebbd950a6ff11d9b5f806282e33df83df9d#d891eebbd950a6ff11d9b5f806282e33df83df9d" }
 dependencies = [
     { name = "numpy" },
     { name = "torch" },
@@ -983,6 +983,28 @@ wheels = [
 [package.metadata]
 requires-dist = [
     { name = "einops" },
+    { name = "torch" },
+]
+
+[[package]]
+name = "flash-attn-3"
+version = "3.0.0b1"
+source = { url = "https://github.com/samsja/flash-attn-builds/releases/download/v0.1/flash_attn_3-3.0.0b1-cp39-abi3-linux_x86_64.whl" }
+dependencies = [
+    { name = "einops" },
+    { name = "ninja" },
+    { name = "packaging" },
+    { name = "torch" },
+]
+wheels = [
+    { url = "https://github.com/samsja/flash-attn-builds/releases/download/v0.1/flash_attn_3-3.0.0b1-cp39-abi3-linux_x86_64.whl", hash = "sha256:4878b0e81704972109479f0667b2ace65f62e62a1161c9dbc23fa746889c79e4" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "einops" },
+    { name = "ninja" },
+    { name = "packaging" },
     { name = "torch" },
 ]
 
@@ -2898,6 +2920,12 @@ dependencies = [
 flash-attn = [
     { name = "flash-attn" },
 ]
+flash-attn-3 = [
+    { name = "flash-attn-3" },
+]
+metrics = [
+    { name = "prometheus-client" },
+]
 
 [package.dev-dependencies]
 dev = [
@@ -2915,8 +2943,9 @@ requires-dist = [
     { name = "blobfile", specifier = ">=3.0.0" },
     { name = "cydifflib", specifier = ">=1.2.0" },
     { name = "datasets", specifier = ">=4.0.0" },
-    { name = "dion", git = "https://github.com/samsja/dion.git?rev=main" },
+    { name = "dion", git = "https://github.com/samsja/dion.git?rev=d891eebbd950a6ff11d9b5f806282e33df83df9d" },
     { name = "flash-attn", marker = "extra == 'flash-attn'", url = "https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.6.8/flash_attn-2.8.3+cu128torch2.9-cp312-cp312-linux_x86_64.whl" },
+    { name = "flash-attn-3", marker = "extra == 'flash-attn-3'", url = "https://github.com/samsja/flash-attn-builds/releases/download/v0.1/flash_attn_3-3.0.0b1-cp39-abi3-linux_x86_64.whl" },
     { name = "jaxtyping", specifier = ">=0.3.2" },
     { name = "kernels", specifier = ">=0.11.5" },
     { name = "liger-kernel", specifier = ">=0.5.10" },
@@ -2928,6 +2957,7 @@ requires-dist = [
     { name = "openai", specifier = ">=1.106.1" },
     { name = "prime", specifier = ">=0.5.0" },
     { name = "prime-evals", specifier = ">=0.1.5" },
+    { name = "prometheus-client", marker = "extra == 'metrics'", specifier = ">=0.20.0" },
     { name = "pydantic", specifier = ">=1.10.13" },
     { name = "pydantic-settings", specifier = ">=2.10.1" },
     { name = "pylatexenc", specifier = ">=2.10" },
@@ -2947,11 +2977,11 @@ requires-dist = [
     { name = "torchtitan", git = "https://github.com/pytorch/torchtitan?rev=a1fdd7e" },
     { name = "transformers", specifier = ">=4.56.0" },
     { name = "uvloop", specifier = ">=0.21.0" },
-    { name = "verifiers", git = "https://github.com/PrimeIntellect-ai/verifiers.git?rev=eb3bae36c93b2f574e13a39da2908609d4ec4b2f" },
+    { name = "verifiers", git = "https://github.com/PrimeIntellect-ai/verifiers.git?rev=209774a" },
     { name = "vllm", specifier = "~=0.13.0" },
     { name = "wandb", specifier = ">=0.20.1" },
 ]
-provides-extras = ["flash-attn"]
+provides-extras = ["flash-attn", "flash-attn-3", "metrics"]
 
 [package.metadata.requires-dev]
 dev = [
@@ -4405,12 +4435,13 @@ wheels = [
 
 [[package]]
 name = "verifiers"
-version = "0.1.8.post2"
-source = { git = "https://github.com/PrimeIntellect-ai/verifiers.git?rev=eb3bae36c93b2f574e13a39da2908609d4ec4b2f#eb3bae36c93b2f574e13a39da2908609d4ec4b2f" }
+version = "0.1.9.post3"
+source = { git = "https://github.com/PrimeIntellect-ai/verifiers.git?rev=209774a#209774a22b6915eeff2091a1ce2782ecbe580ae7" }
 dependencies = [
     { name = "datasets" },
     { name = "jinja2" },
     { name = "math-verify" },
+    { name = "mcp" },
     { name = "nest-asyncio" },
     { name = "openai" },
     { name = "openai-agents" },
